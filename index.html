@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXFGEN HUB - Multi Bot</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0a0a0a;color:#fff;font-family:Arial,sans-serif;padding:20px}
+        h1{
+        text-align:center;
+        background:linear-gradient(#EF00FF,#006FFF)
+        ;
+        font-size:25px;
+        background-clip:text;
+        -webkit-text-fill-color: transparent;
+        }
+        .container{max-width:500px;margin:0 auto}
+        .card{background:#1a1a1a;border-radius:12px;padding:20px;margin-bottom:15px;border:1px solid #333}
+        input{width:100%;padding:12px;margin:8px 0;background:#333;border:1px solid #555;color:#fff;border-radius:8px;font-size:16px}
+        button{width:100%;padding:12px;margin:8px 0;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer}
+        .btn-pair{background:#006FFF;color:#000}
+        .code{font-size:32px;text-align:center;color:#00ff88;font-weight:bold;letter-spacing:5px;padding:15px;background:#000;border-radius:8px;margin:10px 0}
+        .msg{text-align:center;margin:10px 0;font-size:14px}
+        #pairResult{
+            background:#EF00FF;
+            backdrop-filter:blur(10px);
+            padding:30px;
+            border-radius:15px;
+            box-shadow:5px 10px 32px #B7ABB8;
+            margin:15px;
+            text-align:center;
+            letter-spacing:2px;
+            font-family:'Ragdhani',monospace;
+            
+        }
+        .success{color:#00ff88}
+        .error{color:#ff0055}
+    </style>
+</head>
+<body>
+    <h1>『𝐍𝐄𝐗𝐅𝐆𝐄𝐍』◆『𝐇𝐔𝐁』</h1>
+    
+    <div class="container">
+        <div class="card">
+            <h3 style="margin-bottom:15px"> Pair Your WhatsApp</h3>
+            <input type="text" id="phoneInput" placeholder="+254XXXXXXXXX">
+            <button class="btn-pair" onclick="pairBot()">GET PAIRING CODE</button>
+            <div id="pairResult"style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        function pairBot(){
+            const phone = document.getElementById('phoneInput').value
+            document.getElementById('pairResult').style.display='block'
+            fetch(`http://node23.lunes.host:3039/create/pair?phone=${phone}`)
+  .then(res => res.json())
+  .then(data => {
+      document.getElementById('pairResult').innerHTML= `<h2 id='code' onclick='copy()'>${data.code}</h2>`});
+      
+   }
+   
+  function copy(){
+      const text = document.getElementById('code').textContent;
+      navigator.clipboard.writeText(text).then(()=>{alert('copied ✅')})
+  }
+    </script>
+</body>
+      </html>
