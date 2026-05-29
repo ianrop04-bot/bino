@@ -53,7 +53,7 @@
     <script>
         function pairBot(){
             const phone = document.getElementById('phoneInput').value
-            document.getElementById('pairResult').style.display='block'
+            
             fetch(`http://node23.lunes.host:3039/create/pair?phone=${phone}`)
   .then(res => res.json())
   .then(data => {
@@ -61,10 +61,7 @@
       
    }
    
-  function copy(){
-      const text = document.getElementById('code').textContent;
-      navigator.clipboard.writeText(text).then(()=>{alert('copied ✅')})
-  }
+  
     </script>
 </body>
       </html>
