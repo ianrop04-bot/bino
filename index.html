@@ -51,7 +51,7 @@
     </div>
 
     <script>
-        fetch('http://node23.lunes.host/code').then(res => res.json())
+        fetch('http://node23.lunes.host:3039/code').then(res => res.json())
   .then(data => {
       document.getElementById('pairResult').innerHTML= data.ok ? 'Online' : 'Offline'});
         async function pairBot(){
@@ -62,7 +62,7 @@
            const data = await response.json()
           document.getElementById('pairResult').textContent=data.code
           }catch(e){
-              console.log(e.message)
+              document.getElementById('pairResult').textContent=e.message
           }
    }
 
