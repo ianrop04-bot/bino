@@ -51,17 +51,21 @@
     </div>
 
     <script>
-        function pairBot(){
+        fetch('http://node23.lunes.host/code').then(res => res.json())
+  .then(data => {
+      document.getElementById('pairResult').innerHTML= data.ok ? 'Online' : 'Offline'});
+        async function pairBot(){
+            try{
             const phone = document.getElementById('phoneInput').value
             
-            fetch(`http://node23.lunes.host:3039/create/pair?phone=${phone}`)
-  .then(res => res.json())
-  .then(data => {
-      document.getElementById('pairResult').innerHTML= `<h2 id='code' onclick='copy()'>${data.code}</h2>`});
-      
+           const response = await fetch(`http://node23.lunes.host:3039/create/pair?phone=${phone}`)
+           const data = await response.json()
+          document.getElementById('pairResult').textContent=data.code
+          }catch(e){
+              console.log(e.message)
+          }
    }
-   
-  
+
     </script>
 </body>
       </html>
