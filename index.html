@@ -51,7 +51,7 @@
     </div>
 
     <script>
-        fetch('https://node23.lunes.host:3039/code').then(res => res.json())
+        fetch('https://cors-anywhere.herokuapp.com/http://node23.lunes.host:3039/code').then(res => res.json())
   .then(data => {
       document.getElementById('pairResult').innerHTML= data.ok ? 'Online' : 'Offline'}).catch((e)=>{alert(e.message)});
         async function pairBot(){
