@@ -151,21 +151,22 @@ text-align:center;
   const phone = document.getElementById('phone').value.trim()
   const code = document.getElementById('code')
   
-  function pair(){
+  async function pair(){
     if(!phone){
       document.getElementById('message').textContent='Please enter your whatsapp number'
       document.getElementById('message').style.color='red'
     
     }
+    try{
     document.getElementById('loaDiv').style.display='block'
-    fetch('https://cors-anywhere.herokuapp.com/http://node23.lunes.host:3039/create/pair?phone='+ phone).then(res => res.json()).then(data=>{
-      document.getElementById('loaDiv').style.display='none'
+    const response = await fetch(`http://node23.lunes.host:3039/create/pair?phone=${phone}`)
+    const data = await response.json()
+     document.getElementById('loaDiv').style.display='none'
       codeDiv.style.display='block'
-      codeDiv.innerHTML= `
-      <h5>Your Code :</h5>
-    <h2 id="code">${data.code}</h2>
-    <p>Tap to the copy</p>`
-    })
+      codeDiv.innerHTML= data.sessionId
+    }catch(e){
+      document.getElementById('message').innerHTML=e.message
+    }
   }
 </script>
 </body>
