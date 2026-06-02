@@ -159,11 +159,11 @@ text-align:center;
     }
     try{
     document.getElementById('loaDiv').style.display='block'
-    const response = await fetch(`http://node23.lunes.host:3039/create/pair?phone=${phone}`)
+    const response = await fetch(`https://cors-anywhere.herokuapp.com/http://node23.lunes.host:3039/create/pair?phone=${phone}`)
     const data = await response.json()
      document.getElementById('loaDiv').style.display='none'
       codeDiv.style.display='block'
-      codeDiv.innerHTML= data.sessionId
+      codeDiv.innerHTML= data.code
     }catch(e){
       document.getElementById('message').innerHTML=e.message
     }
